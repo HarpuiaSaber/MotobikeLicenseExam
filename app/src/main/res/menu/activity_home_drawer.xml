@@ -2,19 +2,54 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
-    </group>
+    <item android:title="App">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_home"
+                    android:icon="@drawable/home"
+                    android:title="@string/menu_home" />
+                <item
+                    android:id="@+id/nav_help"
+                    android:icon="@android:drawable/ic_dialog_info"
+                    android:title="Hướng dẫn sử dụng" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Người dùng">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_infor"
+                    android:icon="@drawable/user"
+                    android:title="Cá nhân" />
+                <item
+                    android:id="@+id/nav_login"
+                    android:icon="?attr/homeAsUpIndicator"
+                    android:title="@string/menu_login" />
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@android:drawable/ic_lock_power_off"
+                    android:title="Đăng xuất" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Liên hệ">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_rate"
+                    android:icon="@android:drawable/btn_star"
+                    android:title="Đánh giá ứng dụng" />
+                <item
+                    android:id="@+id/nav_policy"
+                    android:icon="@drawable/policy"
+                    android:title="Chính sách và điều khoản" />
+                <item
+                    android:id="@+id/nav_support"
+                    android:icon="@drawable/support"
+                    android:title="Liên hệ/Hỗ trợ" />
+            </group>
+        </menu>
+    </item>
 </menu>
