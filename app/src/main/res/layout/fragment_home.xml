@@ -47,10 +47,9 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/exam"
                     android:gravity="left"
                     android:text="Làm bài thi"
-                    android:textColor="#FFEB3B"
+                    android:textColor="#000000"
                     android:textSize="16sp" />
 
                 <Button
@@ -61,10 +60,9 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="#875FCD"
                     android:gravity="left"
                     android:text="Lý thuyết"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -83,10 +81,9 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/lookfor"
                     android:gravity="left"
-                    android:text="Tra cứu"
-                    android:textColor="#FFFFFF"
+                    android:text="Tra cứu luật"
+                    android:textColor="#000000"
                     android:textSize="16sp" />
 
                 <Button
@@ -98,7 +95,6 @@
                     android:layout_marginBottom="5dp"
 
                     android:layout_weight="1"
-                    android:background="@drawable/fail"
                     android:gravity="left"
                     android:text="Câu hay sai"
                     android:textColor="#000000"
@@ -120,10 +116,9 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/ranking"
                     android:gravity="left"
-                    android:text="Xếp hạng"
-                    android:textColor="#3F51B5"
+                    android:text="Biển báo"
+                    android:textColor="#000000"
                     android:textSize="16sp" />
 
                 <Button
@@ -134,9 +129,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/extend"
                     android:gravity="left"
-                    android:text="Đang phát triển"
+                    android:text="Xếp hạng"
                     android:textColor="#000000"
                     android:textSize="16sp" />
             </LinearLayout>

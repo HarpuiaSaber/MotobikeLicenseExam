@@ -2,7 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <item android:title="App">
+    <item
+        android:id="@+id/nav_app"
+        android:title="App">
         <menu>
             <group android:checkableBehavior="single">
                 <item
@@ -12,17 +14,18 @@
                 <item
                     android:id="@+id/nav_help"
                     android:icon="@android:drawable/ic_dialog_info"
-                    android:title="Hướng dẫn sử dụng" />
+                    android:title="@string/menu_help" />
             </group>
         </menu>
     </item>
-    <item android:title="Người dùng">
+    <item android:title="@string/menu_user"
+        android:id="@+id/nav_user">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_infor"
                     android:icon="@drawable/user"
-                    android:title="Cá nhân" />
+                    android:title="@string/menu_infor" />
                 <item
                     android:id="@+id/nav_login"
                     android:icon="?attr/homeAsUpIndicator"
@@ -30,21 +33,22 @@
                 <item
                     android:id="@+id/nav_logout"
                     android:icon="@android:drawable/ic_lock_power_off"
-                    android:title="Đăng xuất" />
+                    android:title="@string/menu_logout" />
             </group>
         </menu>
     </item>
-    <item android:title="Liên hệ">
+    <item android:title="@string/menu_contact"
+        android:id="@+id/nav_contact">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_rate"
                     android:icon="@android:drawable/btn_star"
-                    android:title="Đánh giá ứng dụng" />
+                    android:title="@string/menu_rate" />
                 <item
                     android:id="@+id/nav_policy"
                     android:icon="@drawable/policy"
-                    android:title="Chính sách và điều khoản" />
+                    android:title="@string/menu_policy" />
                 <item
                     android:id="@+id/nav_support"
                     android:icon="@drawable/support"

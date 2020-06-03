@@ -22,9 +22,4 @@
         android:label="@string/menu_login"
         tools:layout="@layout/fragment_login" />
 
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.group0201.motobikelicenseexam.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
 </navigation>
