@@ -39,31 +39,112 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/exam"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="Làm bài thi"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/theory"
+                    <ImageButton
+                        android:id="@+id/exam"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.25"
+                        android:gravity="center"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.75"
+                        android:gravity="center"
+                        android:text="Làm bài thi"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="Lý thuyết"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/theory"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.25"
+                        android:gravity="center"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.75"
+                        android:gravity="center"
+                        android:text="Học lý thuyết"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/law"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.25"
+                        android:gravity="center"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.75"
+                        android:gravity="center"
+                        android:text="Tra cứu luật"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/fail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.25"
+                        android:gravity="center"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.75"
+                        android:gravity="center"
+                        android:text="Câu hay sai"
+                        android:textSize="16sp" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -73,71 +154,62 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/lookup"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="Tra cứu luật"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/fail"
+                    <ImageButton
+                        android:id="@+id/sign"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.25"
+                        android:background="@drawable/sign"
+                        android:gravity="center"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.75"
+                        android:gravity="center"
+                        android:text="Biển báo"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="Câu hay sai"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/achievement"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="Biển báo"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/extend"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="Xếp hạng"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
+                    <ImageButton
+                        android:id="@+id/achievment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.25"
+                        android:background="@drawable/achievment"
+                        android:gravity="center"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.75"
+                        android:gravity="center"
+                        android:text="Thành tích"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
             </LinearLayout>
-
 
         </LinearLayout>
-    </LinearLayout>
 
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
