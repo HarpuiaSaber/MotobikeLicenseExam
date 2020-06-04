@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MotobikeLicenseExam</string>
-    <string name="baseUrl">http://192.168.43.165:21021/</string>
+    <string name="baseUrl">http://192.168.0.104:21021/</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

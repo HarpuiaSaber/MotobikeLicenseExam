@@ -59,21 +59,21 @@ public class SignupFragment extends Fragment {
         //default
         male.setChecked(true);
 
-        StringBuilder bodyString = new StringBuilder();
-        bodyString.append("{");
-        bodyString.append("\"id\":0,");
-        bodyString.append("\"username\":\"" + username.getText().toString() + "\",");
-        bodyString.append("\"id\":\"" + password.getText().toString() + "\",");
-        bodyString.append("\"id\":\"" + name.getText().toString() + "\",");
-        bodyString.append("\"id\":true,");
-        bodyString.append("\"id\":\"" + dob.getText().toString() + "\",");
-        bodyString.append("\"id\":" + (male.isChecked() ? 0 : 1) + ",");
-        bodyString.append("\"id\":\"" + phone.getText().toString() + "\"");
-        bodyString.append("}");
-
-        String body = bodyString.toString();
-
         signup.setOnClickListener((v) -> {
+            StringBuilder bodyString = new StringBuilder();
+            bodyString.append("{");
+            bodyString.append("\"id\":0,");
+            bodyString.append("\"username\":\"" + username.getText().toString() + "\",");
+            bodyString.append("\"password\":\"" + password.getText().toString() + "\",");
+            bodyString.append("\"name\":\"" + name.getText().toString() + "\",");
+            bodyString.append("\"isActive\":true,");
+            bodyString.append("\"dob\":\"" + dob.getText().toString() + "\",");
+            bodyString.append("\"gender\":" + (male.isChecked() ? 0 : 1) + ",");
+            bodyString.append("\"phone\":\"" + phone.getText().toString() + "\"");
+            bodyString.append("}");
+
+            String body = bodyString.toString();
+
             if (password.getText().toString().equals(passwordrepeat.getText().toString())) {
                 RequestQueue queue = Volley.newRequestQueue(root.getContext());
                 String url = getString(R.string.baseUrl) + "api/User/Create";
@@ -82,23 +82,17 @@ public class SignupFragment extends Fragment {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        NetworkResponse networkResponse = error.networkResponse;
-                        if (networkResponse != null) {
-                            if (networkResponse.statusCode == 500) {
-                                Toast.makeText(root.getContext(), new String(networkResponse.data), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                        if (networkResponse != null) {
-                            if (networkResponse.statusCode == 200) {
                                 Toast.makeText(root.getContext(), "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(root.getContext(), HomeActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY); //no back
                                 startActivity(intent);
                             }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        NetworkResponse networkResponse = error.networkResponse;
+                        if (networkResponse != null && networkResponse.statusCode == 500) {
+                                Toast.makeText(root.getContext(), new String(networkResponse.data), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }) {
