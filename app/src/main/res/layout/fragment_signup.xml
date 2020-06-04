@@ -54,17 +54,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:gravity="bottom"
+                android:gravity="left|center"
                 android:text="Họ tên"
-                android:textColor="#000000"
-                android:textColorHint="#000000" />
+                android:textColor="#000000" />
 
             <EditText
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:inputType="date"
+                android:inputType="textPersonName"
                 android:text="" />
         </LinearLayout>
 
@@ -79,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:gravity="bottom"
+                android:gravity="left|center"
                 android:text="Tài khoản"
                 android:textColor="#000000" />
 
@@ -103,7 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:gravity="bottom"
+                android:gravity="left|center"
                 android:text="Mật khẩu"
                 android:textColor="#000000" />
 
@@ -127,7 +126,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:gravity="bottom"
+                android:gravity="left|center"
                 android:text="Nhập lại mật khẩu"
                 android:textColor="#000000" />
 
@@ -151,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:gravity="bottom"
+                android:gravity="left|center"
                 android:text="SĐT"
                 android:textColor="#000000" />
 
@@ -175,7 +174,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:gravity="bottom"
+                android:gravity="left|center"
                 android:text="Giới tính"
                 android:textColor="#000000" />
 
@@ -183,7 +182,7 @@
             <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_gravity="center"
                 android:layout_weight="1.5"
                 android:orientation="horizontal">
 
@@ -217,7 +216,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_weight="1.5"
-                android:gravity="bottom|left"
+                android:gravity="left|center"
                 android:text="Ngày sinh"
                 android:textColor="#000000" />
 

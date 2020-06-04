@@ -31,6 +31,10 @@
                     android:icon="?attr/homeAsUpIndicator"
                     android:title="@string/menu_login" />
                 <item
+                    android:id="@+id/nav_signup"
+                    android:icon="?attr/homeAsUpIndicator"
+                    android:title="@string/menu_signup" />
+                <item
                     android:id="@+id/nav_logout"
                     android:icon="@android:drawable/ic_lock_power_off"
                     android:title="@string/menu_logout" />

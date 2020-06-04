@@ -50,16 +50,17 @@ public class HomeActivity extends AppCompatActivity {
             User obj = gson.fromJson(userJson, User.class);
             //config for user logged
             menu.findItem(R.id.nav_login).setVisible(false);
+            menu.findItem(R.id.nav_signup).setVisible(false);
             //config view navigation
             mAppBarConfiguration = new AppBarConfiguration.Builder(
-                    R.id.nav_home, R.id.nav_infor)
+                    R.id.nav_home, R.id.nav_user, R.id.nav_contact)
                     .setDrawerLayout(drawer)
                     .build();
         } else {
             menu.findItem(R.id.nav_infor).setVisible(false);
             menu.findItem(R.id.nav_logout).setVisible(false);
             mAppBarConfiguration = new AppBarConfiguration.Builder(
-                    R.id.nav_home, R.id.nav_login)
+                    R.id.nav_home, R.id.nav_user, R.id.nav_contact)
                     .setDrawerLayout(drawer)
                     .build();
         }

@@ -9,12 +9,7 @@
         android:id="@+id/nav_home"
         android:name="com.group0201.motobikelicenseexam.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home">
-
-        <action
-            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
-           />
-    </fragment>
+        tools:layout="@layout/fragment_home"/>
 
     <fragment
         android:id="@+id/nav_login"
@@ -22,4 +17,9 @@
         android:label="@string/menu_login"
         tools:layout="@layout/fragment_login" />
 
+    <fragment
+        android:id="@+id/nav_signup"
+        android:name="com.group0201.motobikelicenseexam.ui.signup.SignupFragment"
+        android:label="@string/menu_signup"
+        tools:layout="@layout/fragment_signup" />
 </navigation>

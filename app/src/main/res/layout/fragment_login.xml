@@ -9,7 +9,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -35,8 +34,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="#4E4545"
                 android:textSize="36sp"
-                app:fontFamily="sans-serif-black"
-                app:fontVariationSettings="50" />
+                app:fontFamily="sans-serif-black" />
         </LinearLayout>
 
         <LinearLayout
@@ -80,8 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
                     android:gravity="bottom"
-                    android:text="TextView"
-                    tools:text="Mật khẩu" />
+                    android:text="Mật khẩu" />
 
                 <EditText
                     android:id="@+id/password"
@@ -89,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPassword" />
             </LinearLayout>
         </LinearLayout>
 
@@ -109,9 +106,8 @@
                     android:id="@+id/forgotPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
                     android:gravity="center"
-                    tools:text="Quên mật khẩu?" />
+                    android:text="Quên mật khẩu?" />
             </LinearLayout>
 
             <LinearLayout
@@ -130,7 +126,7 @@
                     android:layout_marginRight="25dp"
                     android:layout_weight="1"
                     android:background="#0C3B71"
-                    android:text="Đăng nhập"
+                    android:text="@string/menu_login"
                     android:textColor="#FFFFFF" />
 
                 <Button
@@ -140,7 +136,7 @@
                     android:layout_marginLeft="25dp"
                     android:layout_weight="1"
                     android:background="#0C3B71"
-                    android:text="Đăng ký"
+                    android:text="@string/menu_signup"
                     android:textColor="#FFFFFF" />
 
             </LinearLayout>

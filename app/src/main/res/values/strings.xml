@@ -17,4 +17,5 @@
     <string name="menu_contact">Liên hệ</string>
     <string name="menu_rate">Đánh giá ứng dụng</string>
     <string name="menu_policy">Chính sách và điều khoản</string>
+    <string name="menu_signup">Đăng ký</string>
 </resources>

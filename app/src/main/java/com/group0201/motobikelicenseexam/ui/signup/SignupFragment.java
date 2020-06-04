@@ -44,7 +44,7 @@ public class SignupFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
                 ViewModelProviders.of(this).get(SignupViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_login, container, false);
+        View root = inflater.inflate(R.layout.fragment_signup, container, false);
 
         name = root.findViewById(R.id.name);
         username = root.findViewById(R.id.username);
