@@ -1,13 +1,16 @@
 package com.group0201.motobikelicenseexam.ui.signup;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -28,10 +31,14 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.group0201.motobikelicenseexam.HomeActivity;
 import com.group0201.motobikelicenseexam.R;
+import com.group0201.motobikelicenseexam.model.User;
 
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class SignupFragment extends Fragment {
 
@@ -39,6 +46,8 @@ public class SignupFragment extends Fragment {
     private EditText name, username, password, passwordrepeat, phone, dob;
     private RadioButton male, female;
     private Button signup;
+    private Calendar myCalendar;
+    private DatePickerDialog datePickerDialog;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -58,21 +67,58 @@ public class SignupFragment extends Fragment {
 
         //default
         male.setChecked(true);
+        dob.setInputType(InputType.TYPE_NULL);
 
+        myCalendar = Calendar.getInstance();
+        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, month);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+                dob.setText(sdf.format(myCalendar.getTime()));
+            }
+        };
+        datePickerDialog = new DatePickerDialog(root.getContext(), date, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH));
+        dob.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                datePickerDialog.show();
+            }
+        });
+        dob.setOnTouchListener((v, event) -> {
+            datePickerDialog.show();
+            return true;
+        });
         signup.setOnClickListener((v) -> {
-            StringBuilder bodyString = new StringBuilder();
-            bodyString.append("{");
-            bodyString.append("\"id\":0,");
-            bodyString.append("\"username\":\"" + username.getText().toString() + "\",");
-            bodyString.append("\"password\":\"" + password.getText().toString() + "\",");
-            bodyString.append("\"name\":\"" + name.getText().toString() + "\",");
-            bodyString.append("\"isActive\":true,");
-            bodyString.append("\"dob\":\"" + dob.getText().toString() + "\",");
-            bodyString.append("\"gender\":" + (male.isChecked() ? 0 : 1) + ",");
-            bodyString.append("\"phone\":\"" + phone.getText().toString() + "\"");
-            bodyString.append("}");
+//            StringBuilder bodyString = new StringBuilder();
+//            bodyString.append("{");
+//            bodyString.append("\"id\":0,");
+//            bodyString.append("\"username\":\"" + username.getText().toString() + "\",");
+//            bodyString.append("\"password\":\"" + password.getText().toString() + "\",");
+//            bodyString.append("\"name\":\"" + name.getText().toString() + "\",");
+//            bodyString.append("\"isActive\":true,");
+//            bodyString.append("\"dob\":\"" + dob.getText().toString() + "\",");
+//            bodyString.append("\"gender\":" + (male.isChecked() ? 0 : 1) + ",");
+//            bodyString.append("\"phone\":\"" + phone.getText().toString() + "\"");
+//            bodyString.append("}");
+//
+//            String body = bodyString.toString();
 
-            String body = bodyString.toString();
+            User user = new User(
+                    0,
+                    name.getText().toString(),
+                    username.getText().toString(),
+                    password.getText().toString(),
+                    true,
+                    (male.isChecked()? 0 : 1),
+                    dob.getText().toString(),
+                    phone.getText().toString()
+            );
+            Gson gson = new Gson();
+            String body = gson.toJson(user);
 
             if (password.getText().toString().equals(passwordrepeat.getText().toString())) {
                 RequestQueue queue = Volley.newRequestQueue(root.getContext());
@@ -92,7 +138,7 @@ public class SignupFragment extends Fragment {
                     public void onErrorResponse(VolleyError error) {
                         NetworkResponse networkResponse = error.networkResponse;
                         if (networkResponse != null && networkResponse.statusCode == 500) {
-                                Toast.makeText(root.getContext(), new String(networkResponse.data), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(root.getContext(), new String(networkResponse.data), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }) {
