@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
@@ -30,8 +30,8 @@
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="177dp"
-                android:layout_height="46dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1.5"
                 android:gravity="center"
                 android:text="ĐĂNG KÝ"
@@ -52,7 +52,7 @@
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1.5"
                 android:gravity="left|center"
                 android:text="Họ tên"
@@ -61,7 +61,7 @@
             <EditText
                 android:id="@+id/name"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:inputType="textPersonName"
                 android:text="" />
@@ -76,7 +76,7 @@
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1.5"
                 android:gravity="left|center"
                 android:text="Tài khoản"
@@ -85,7 +85,7 @@
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:inputType="textPersonName"
                 android:text="" />
@@ -100,7 +100,7 @@
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1.5"
                 android:gravity="left|center"
                 android:text="Mật khẩu"
@@ -109,7 +109,7 @@
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:inputType="textPassword"
                 android:text="" />
@@ -124,7 +124,7 @@
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1.5"
                 android:gravity="left|center"
                 android:text="Nhập lại mật khẩu"
@@ -133,7 +133,7 @@
             <EditText
                 android:id="@+id/passwordrepeat"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:inputType="textPassword"
                 android:text="" />
@@ -148,7 +148,7 @@
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1.5"
                 android:gravity="left|center"
                 android:text="SĐT"
@@ -157,7 +157,7 @@
             <EditText
                 android:id="@+id/phone"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:inputType="textPersonName"
                 android:text="" />
@@ -171,25 +171,25 @@
 
             <TextView
                 android:id="@+id/textView16"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
                 android:gravity="left|center"
                 android:text="Giới tính"
                 android:textColor="#000000" />
 
 
             <RadioGroup
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1.5"
+                android:gravity="center"
+                android:layout_weight="0.5"
                 android:orientation="horizontal">
 
                 <RadioButton
                     android:id="@+id/female"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Nữ"
                     android:textColor="#000000" />
@@ -197,7 +197,7 @@
                 <RadioButton
                     android:id="@+id/male"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Nam"
                     android:textColor="#000000" />
@@ -214,7 +214,7 @@
             <TextView
                 android:id="@+id/textView17"
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1.5"
                 android:gravity="left|center"
                 android:text="Ngày sinh"
@@ -223,7 +223,7 @@
             <EditText
                 android:id="@+id/dob"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:text="" />
         </LinearLayout>
@@ -232,7 +232,6 @@
             android:id="@+id/signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="#0C3B71"
             android:text="ĐĂNG KÝ"
             android:textColor="#FFFFFF" />
