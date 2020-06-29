@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MotobikeLicenseExam</string>
-    <string name="baseUrl">http://192.168.0.104:21021/</string>
+    <string name="baseUrl">http://192.168.1.109:21021/</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -18,4 +18,7 @@
     <string name="menu_rate">Đánh giá ứng dụng</string>
     <string name="menu_policy">Chính sách và điều khoản</string>
     <string name="menu_signup">Đăng ký</string>
+    <string name="title_activity_achievement_activites">AchievementActivites</string>
+    <string name="tab_text_1">Thành tích cá nhân</string>
+    <string name="tab_text_2">Bảng xếp hạng</string>
 </resources>
