@@ -25,6 +25,7 @@ import java.util.List;
 
 public class TraficSignViewModelDetail extends AppCompatActivity {
     ListView listView1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

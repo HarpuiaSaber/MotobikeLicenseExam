@@ -50,7 +50,7 @@ public class PersonelFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
                 ViewModelProviders.of(this).get(SignupViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_signup, container, false);
+        View root = inflater.inflate(R.layout.fragment_personel, container, false);
 
         name = root.findViewById(R.id.name);
         name.setEnabled(false);
