@@ -1,4 +1,4 @@
-package com.group0201.motobikelicenseexam.ui.viewtraficsign;
+package com.group0201.motobikelicenseexam;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-
-import com.group0201.motobikelicenseexam.R;
 
 public class TraficSignViewModel extends AppCompatActivity {
     ImageButton btn1, btn2, btn3, btn4, btn5, btn6;

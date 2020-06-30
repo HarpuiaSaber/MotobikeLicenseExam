@@ -13,10 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.viewtraficsign.TraficSignViewModelDetail"></activity>
-        <activity android:name=".ui.viewtraficsign.TraficSignViewModel" />
-        <activity android:name=".ui.viewlaw.LawViewModelDetail" />
-        <activity android:name=".ui.viewlaw.LawViewModel" />
+        <activity android:name=".TraficSignViewModelDetail"></activity>
+        <activity android:name=".TraficSignViewModel" />
+        <activity android:name=".LawViewModelDetail" />
+        <activity android:name=".LawViewModel" />
         <activity
             android:name=".AchievementActivites"
             android:label="@string/title_activity_achievement_activites"

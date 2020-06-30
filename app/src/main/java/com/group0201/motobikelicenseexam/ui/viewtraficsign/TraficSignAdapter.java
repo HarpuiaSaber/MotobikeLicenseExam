@@ -43,6 +43,7 @@ public class TraficSignAdapter extends ArrayAdapter<TraficSign> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
         TraficSign traficSign = arrTra.get(position);
         viewHolder.tvContent.setText(traficSign.getContent());
         viewHolder.tvName.setText(traficSign.getName());
