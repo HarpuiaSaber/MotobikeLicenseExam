@@ -1,4 +1,4 @@
-package com.group0201.motobikelicenseexam.ui.viewtraficsign;
+package com.group0201.motobikelicenseexam;
 
 import androidx.appcompat.app.AppCompatActivity;
 

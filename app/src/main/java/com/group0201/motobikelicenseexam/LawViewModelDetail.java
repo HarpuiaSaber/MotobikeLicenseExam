@@ -1,4 +1,4 @@
-package com.group0201.motobikelicenseexam.ui.viewlaw;
+package com.group0201.motobikelicenseexam;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +14,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.group0201.motobikelicenseexam.R;
 import com.group0201.motobikelicenseexam.model.Law;
+import com.group0201.motobikelicenseexam.ui.viewlaw.LawAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +31,7 @@ public class LawViewModelDetail extends AppCompatActivity {
         setContentView(R.layout.activity_law_view_model_detail);
         final RequestQueue requestQueue = Volley.newRequestQueue(this);
         int type = getIntent().getIntExtra("type", 0);
-        String URL = "http://192.168.1.203:21021/api/Law/GetLaw?lawType=" + type;
+        String URL =  getString(R.string.baseUrl) + type;
         JsonArrayRequest arrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 URL,
