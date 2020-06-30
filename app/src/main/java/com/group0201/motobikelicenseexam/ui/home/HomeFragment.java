@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.group0201.motobikelicenseexam.AchievementActivites;
+import com.group0201.motobikelicenseexam.ExamListActivity;
 import com.group0201.motobikelicenseexam.LawViewModel;
 import com.group0201.motobikelicenseexam.R;
 import com.group0201.motobikelicenseexam.TraficSignViewModel;
@@ -51,6 +52,7 @@ public class HomeFragment extends Fragment {
         webView.loadUrl(getString(R.string.baseUrl) + "Home/Infor");
 
         exam.setOnClickListener((v) -> {
+            startActivity(new Intent(root.getContext(), ExamListActivity.class));
         });
         theory.setOnClickListener((v) -> {
         });
