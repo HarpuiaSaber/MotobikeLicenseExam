@@ -1,6 +1,6 @@
 package com.group0201.motobikelicenseexam.model;
 
-public class BaiTest {
+public class BaiTest{
     private long id;
     private String content;
     private int time;
