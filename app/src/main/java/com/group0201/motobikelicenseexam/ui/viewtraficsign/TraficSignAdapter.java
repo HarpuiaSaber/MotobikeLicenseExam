@@ -43,10 +43,11 @@ public class TraficSignAdapter extends ArrayAdapter<TraficSign> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
         TraficSign traficSign = arrTra.get(position);
         viewHolder.tvContent.setText(traficSign.getContent());
         viewHolder.tvName.setText(traficSign.getName());
-        new DownLoadImageTask(viewHolder.imageView).execute("http://192.168.1.203:21021/images/"+traficSign.getImage());
+        new DownLoadImageTask(viewHolder.imageView).execute(convertView.getContext().getString(R.string.baseUrl) +traficSign.getImage());
         return convertView;
     }
 

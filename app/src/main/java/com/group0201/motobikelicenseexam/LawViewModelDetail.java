@@ -31,7 +31,7 @@ public class LawViewModelDetail extends AppCompatActivity {
         setContentView(R.layout.activity_law_view_model_detail);
         final RequestQueue requestQueue = Volley.newRequestQueue(this);
         int type = getIntent().getIntExtra("type", 0);
-        String URL =  getString(R.string.baseUrl) + type;
+        String URL =  getString(R.string.baseUrl) +"api/Law/GetLaw?lawType=" + type;
         JsonArrayRequest arrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 URL,
