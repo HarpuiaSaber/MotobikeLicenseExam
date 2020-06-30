@@ -16,7 +16,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.group0201.motobikelicenseexam.AchievementActivites;
+import com.group0201.motobikelicenseexam.LawViewModel;
 import com.group0201.motobikelicenseexam.R;
+import com.group0201.motobikelicenseexam.TraficSignViewModel;
 
 public class HomeFragment extends Fragment {
 
@@ -53,10 +55,12 @@ public class HomeFragment extends Fragment {
         theory.setOnClickListener((v) -> {
         });
         law.setOnClickListener((v) -> {
+            startActivity(new Intent(root.getContext(), LawViewModel.class));
         });
         fail.setOnClickListener((v) -> {
         });
         sign.setOnClickListener((v) -> {
+            startActivity(new Intent(root.getContext(), TraficSignViewModel.class));
         });
         achievment.setOnClickListener((v) -> {
             startActivity(new Intent(root.getContext(), AchievementActivites.class));

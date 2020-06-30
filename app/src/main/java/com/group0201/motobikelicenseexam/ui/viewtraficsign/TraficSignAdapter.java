@@ -47,7 +47,7 @@ public class TraficSignAdapter extends ArrayAdapter<TraficSign> {
         TraficSign traficSign = arrTra.get(position);
         viewHolder.tvContent.setText(traficSign.getContent());
         viewHolder.tvName.setText(traficSign.getName());
-        new DownLoadImageTask(viewHolder.imageView).execute(convertView.getContext().getString(R.string.baseUrl) +traficSign.getImage());
+        new DownLoadImageTask(viewHolder.imageView).execute(convertView.getContext().getString(R.string.baseUrl) +"images/" +traficSign.getImage());
         return convertView;
     }
 
