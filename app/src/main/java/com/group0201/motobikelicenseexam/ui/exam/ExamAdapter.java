@@ -9,17 +9,20 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.group0201.motobikelicenseexam.R;
+import com.group0201.motobikelicenseexam.model.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExamAdapter extends BaseAdapter {
-    private ArrayList<ExamIcon> arrIcon;
+//    private ArrayList<ExamIcon> arrIcon;
+    private List<Test> arrIcon;
     private Context context;
     private LayoutInflater layoutInflater;
 
-    public ExamAdapter(ArrayList<ExamIcon> arrIcon, Context context) {
+    public ExamAdapter(List<Test> arrIcon) {
         this.arrIcon = arrIcon;
-        this.context = context;
+//        this.context = context;
 //        this.layoutInflater = LayoutInflater.from(context);
     }
 
@@ -41,25 +44,25 @@ public class ExamAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
+        this.context=parent.getContext();
         layoutInflater=(LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if(convertView==null){
             holder=new ViewHolder();
             convertView=layoutInflater.inflate(R.layout.exam_button_layout,null);
             holder.number=(TextView) convertView.findViewById(R.id.number);
-            holder.corrects=(TextView) convertView.findViewById(R.id.count_correct);
-            holder.fails=(TextView)convertView.findViewById(R.id.count_fail);
+            holder.duration =(TextView) convertView.findViewById(R.id.duration);
             convertView.setTag(holder);
         }else{
             holder=(ViewHolder)convertView.getTag();
         }
-        ExamIcon exam=this.arrIcon.get(position);
-        holder.number.setText("Test No."+exam.getTestNum());
-        holder.corrects.setText("Correct: "+exam.getCorrectCount()+"/200");
-        holder.fails.setText("Fail: "+exam.getFailCount()+"/200");
+//        ExamIcon exam=this.arrIcon.get(position);
+        Test test=this.arrIcon.get(position);
+        holder.number.setText("Bài số:"+test.getContent());
+        holder.duration.setText("Thời gian: "+test.getTime());
         return convertView;
     }
 
     private class ViewHolder{
-        TextView number,corrects,fails;
+        TextView number, duration;
     }
 }

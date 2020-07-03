@@ -4,38 +4,31 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.group0201.motobikelicenseexam.model.ListQuestion;
+import com.group0201.motobikelicenseexam.model.Question;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class ItemAdapter extends FragmentPagerAdapter {
-    private ArrayList<Integer> imageUris;
-    private ArrayList<String[]> answers;
-    private ArrayList<Integer> corrections;
-    private ArrayList<String> questions;
-
+//    private ArrayList<Integer> imageUris;
+//    private ArrayList<String[]> answers;
+//    private ArrayList<Integer> corrections;
+//    private ArrayList<String> questions;
+    private ListQuestion questions;
     public ItemAdapter(FragmentManager fm,
-                       ArrayList<Integer> imageUris,
-                       ArrayList<String[]> answers,
-                       ArrayList<Integer> corrections,
-                       ArrayList<String> questions) {
+                       ListQuestion questions) {
         super(fm);
-        this.imageUris = imageUris;
-        this.answers = answers;
-        this.corrections = corrections;
         this.questions = questions;
     }
 
-//    public void setUp(){
-//        this.fragArr=new ArrayList<>();
-//        for(int i=0;i<questions.size();i++){
-//            ExamItem newItem=new ExamItem();
-//            newItem.setAgu(questions.get(i),imageUris.get(i),answers.get(i),corrections.get(i));
-//            this.fragArr.add(newItem);
-//        }
-//    }
 
     @Override
     public Fragment getItem(int i) {
-        return ExamItem.newInstance(corrections.get(i),questions.get(i),imageUris.get(i),answers.get(i));
+
+        return ExamItem.newInstance(questions.getQuestions().get(i).getContent(),
+                            questions.getQuestions().get(i).getImage(),
+                            questions.getQuestions().get(i).getAnswers());
     }
 
     @Override
@@ -45,6 +38,6 @@ public class ItemAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return questions.size();
+        return questions.getQuestions().size();
     }
 }

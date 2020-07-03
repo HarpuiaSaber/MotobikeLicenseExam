@@ -3,59 +3,76 @@ package com.group0201.motobikelicenseexam;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.group0201.motobikelicenseexam.model.ListQuestion;
+import com.group0201.motobikelicenseexam.model.Question;
+import com.group0201.motobikelicenseexam.model.Test;
+import com.group0201.motobikelicenseexam.ui.exam.ExamAdapter;
 import com.group0201.motobikelicenseexam.ui.exam.ItemAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator;
 
 public class ExamActivity extends AppCompatActivity {
-    private  String[] questions={"cau hoi 1","cau hoi 2","cau hoi 3","cau hoi 4"};
-    private  int[] images={R.drawable.bb3,R.drawable.bb4,R.drawable.bb6,R.drawable.bb7};
-    private  String[] answers1={"cau 1","cau 2","cau 3"};
-    private  String[] answers2={"cau 1","cau 2","cau 3"};
-    private  String[] answers3={"cau 1","cau 2","cau 3"};
-    private  String[] answers4={"cau 1","cau 2"};
-    private  int[] corrAnses={1,2,1,1};
     private ViewPager examPages;
-    //    private static ExamItem itemFrag;
+    private long examId;
     private int currentPage=0;
-    private ArrayList<String> qusArr;
-    private  ArrayList<Integer> imgArr;
-    private  ArrayList<String[]> answersArr;
-    private  ArrayList<Integer> corrArr;
+    private ListQuestion questions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        qusArr=new ArrayList<>();
-        for(int a=0;a<questions.length;a++){
-            qusArr.add(questions[a]);
-        }
-        imgArr=new ArrayList<>();
-        for(int i=0;i<images.length;i++){
-            imgArr.add(images[i]);
-        }
-        answersArr=new ArrayList<>();
-        answersArr.add(answers1);
-        answersArr.add(answers2);
-        answersArr.add(answers3);
-        answersArr.add(answers4);
-        corrArr=new ArrayList<>();
-        for(int b=0;b<corrAnses.length;b++){
-            corrArr.add(corrAnses[b]);
-        }
         setContentView(R.layout.activity_exam);
-        examPages =(ViewPager) findViewById(R.id.pager);
-        init();
+        Intent intent=this.getIntent();
+        this.examId=intent.getLongExtra("exam_id",0);
+        init(examId);
     }
-    public void init(){
-        ItemAdapter mPagerAdap=new ItemAdapter(getSupportFragmentManager(),this.imgArr,this.answersArr,this.corrArr,this.qusArr);
-        examPages.setAdapter(mPagerAdap);
-        CircleIndicator indicator = (CircleIndicator)findViewById(R.id.indicator);
-        indicator.setViewPager(examPages);
-        examPages.setCurrentItem(currentPage,true);
+    public void init(long examid){
+        this.questions=new ListQuestion();
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = getString(R.string.baseUrl) + "api/Exam/Get?id="+examid;
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Gson gson = new Gson();
+                        questions=gson.fromJson(response,ListQuestion.class);
+                        //show view
+                        ItemAdapter mPagerAdap=new ItemAdapter(getSupportFragmentManager(),questions);
+                        examPages =(ViewPager) findViewById(R.id.pager);
+                        examPages.setAdapter(mPagerAdap);
+                        CircleIndicator indicator = (CircleIndicator)findViewById(R.id.indicator);
+                        indicator.setViewPager(examPages);
+                        examPages.setCurrentItem(currentPage,true);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse networkResponse = error.networkResponse;
+                if (networkResponse != null && networkResponse.statusCode == 500) {
+//                    Toast.makeText(this, new String(networkResponse.data), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
+
     }
 
 }
