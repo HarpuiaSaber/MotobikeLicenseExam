@@ -45,16 +45,18 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
+                    android:scaleType="fitCenter"
                     android:orientation="vertical">
 
                     <ImageButton
+                        android:background="#0000"
                         android:id="@+id/exam"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.25"
                         android:gravity="center"
-                        android:textColor="#000000" />
-
+                        android:src="@drawable/baithi"
+                        android:scaleType="fitCenter"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -78,6 +80,9 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.25"
                         android:gravity="center"
+                        android:src="@drawable/hoclythuyet"
+                        android:scaleType="fitCenter"
+                        android:background="#0000"
                         android:textColor="#000000" />
 
                     <TextView
@@ -106,10 +111,13 @@
 
                     <ImageButton
                         android:id="@+id/law"
-                        android:layout_width="match_parent"
+                        android:background="#0000"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="0.25"
+                        android:src="@drawable/ttc"
                         android:gravity="center"
+                        android:scaleType="fitCenter"
                         android:textColor="#000000" />
 
                     <TextView
@@ -131,10 +139,13 @@
 
                     <ImageButton
                         android:id="@+id/fail"
+                        android:background="#0000"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.25"
                         android:gravity="center"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/cauhaysai"
                         android:textColor="#000000" />
 
                     <TextView
@@ -177,6 +188,7 @@
                         android:layout_weight="0.75"
                         android:gravity="center"
                         android:text="Biển báo"
+                        android:scaleType="fitCenter"
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -195,6 +207,7 @@
                         android:layout_weight="0.25"
                         android:background="@drawable/achievment"
                         android:gravity="center"
+                        android:scaleType="fitCenter"
                         android:textColor="#000000" />
 
                     <TextView

@@ -27,7 +27,7 @@ import com.android.volley.toolbox.Volley;
 import com.group0201.motobikelicenseexam.HomeActivity;
 import com.group0201.motobikelicenseexam.R;
 import com.google.gson.Gson;
-import com.group0201.motobikelicenseexam.model.BaiTest;
+import com.group0201.motobikelicenseexam.model.Test;
 import com.group0201.motobikelicenseexam.model.Ranking;
 import com.group0201.motobikelicenseexam.model.Test;
 
@@ -56,13 +56,13 @@ public class FragAchievement extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        BaiTest[] testResponse = gson.fromJson(response, BaiTest[].class);
-                        List<BaiTest> testList = Arrays.asList(testResponse);
+                        Test[] testResponse = gson.fromJson(response, Test[].class);
+                        List<Test> testList = Arrays.asList(testResponse);
                         List<String> listSpinnerView = new ArrayList<>();
                         for (int index = 0; index < testList.size(); index++) {
-                            BaiTest baiTest = testList.get(index);
-                            listSpinnerView.add(baiTest.getContent());
-                            spinnerMap.put(baiTest.getContent(), baiTest.getId());
+                            Test Test = testList.get(index);
+                            listSpinnerView.add(Test.getContent());
+                            spinnerMap.put(Test.getContent(), Test.getId());
                         }
                         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_spinner_dropdown_item, listSpinnerView);
                         bai.setAdapter(arrayAdapter);

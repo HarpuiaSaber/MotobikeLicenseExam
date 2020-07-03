@@ -2,6 +2,7 @@ package com.group0201.motobikelicenseexam.ui.personel;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -45,6 +46,7 @@ public class PersonelFragment extends Fragment {
     private SignupViewModel galleryViewModel;
     private EditText name, username, phone, dob;
     private RadioButton male, female;
+    private SharedPreferences sharedPreferences;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -70,41 +72,44 @@ public class PersonelFragment extends Fragment {
         dob.setInputType(InputType.TYPE_NULL);
 
         //read from share pref to get user id
-        int userId = 0;
-        RequestQueue queue = Volley.newRequestQueue(root.getContext());
-        String url = getString(R.string.baseUrl) + "api/User/Get?id=" + userId;
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Gson gson = new Gson();
-                        User userFromDB = gson.fromJson(response, User.class);
-                        //show view
-                        name.setText(userFromDB.getName());
-                        username.setText(userFromDB.getUsername());
-                        phone.setText(userFromDB.getPhone());
-                        if(userFromDB.getGender()==0){
-                            male.setChecked(true);
-                            female.setChecked(false);
-                        }else{
-                            male.setChecked(false);
-                            female.setChecked(true);
+        Gson gson = new Gson();
+        sharedPreferences = root.getContext().getSharedPreferences("group0201", root.getContext().MODE_PRIVATE);
+        String userJson = sharedPreferences.getString("user", null);
+        if (userJson != null) {
+            User user = gson.fromJson(userJson, User.class);
+            RequestQueue queue = Volley.newRequestQueue(root.getContext());
+            String url = getString(R.string.baseUrl) + "api/User/GetById?id=" + user.getId();
+            // Request a string response from the provided URL.
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            User userFromDB = gson.fromJson(response, User.class);
+                            //show view
+                            name.setText(userFromDB.getName());
+                            username.setText(userFromDB.getUserName());
+                            phone.setText(userFromDB.getPhone());
+                            if (userFromDB.getGender() == 0) {
+                                male.setChecked(true);
+                                female.setChecked(false);
+                            } else {
+                                male.setChecked(false);
+                                female.setChecked(true);
+                            }
+                            dob.setText(userFromDB.getDob());
                         }
-                        dob.setText(userFromDB.getDob());
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    NetworkResponse networkResponse = error.networkResponse;
+                    if (networkResponse != null && networkResponse.statusCode == 500) {
+                        Toast.makeText(root.getContext(), new String(networkResponse.data), Toast.LENGTH_SHORT).show();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                if (networkResponse != null && networkResponse.statusCode == 500) {
-                    Toast.makeText(root.getContext(), new String(networkResponse.data), Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-
+            });
+            // Add the request to the RequestQueue.
+            queue.add(stringRequest);
+        }
         return root;
 
     }
