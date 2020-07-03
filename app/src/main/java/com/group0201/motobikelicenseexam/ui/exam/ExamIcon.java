@@ -2,17 +2,15 @@ package com.group0201.motobikelicenseexam.ui.exam;
 
 public class ExamIcon {
     private int testNum;
-    private int failCount;
-    private int correctCount;
+    private int duration;
 
     public ExamIcon(){
 
     }
 
-    public ExamIcon(int testNum, int failCount, int correctCount) {
+    public ExamIcon(int testNum, int correctCount) {
         this.testNum = testNum;
-        this.failCount = failCount;
-        this.correctCount = correctCount;
+        this.duration = correctCount;
     }
 
     public int getTestNum() {
@@ -23,19 +21,11 @@ public class ExamIcon {
         this.testNum = testNum;
     }
 
-    public int getFailCount() {
-        return failCount;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setFailCount(int failCount) {
-        this.failCount = failCount;
-    }
-
-    public int getCorrectCount() {
-        return correctCount;
-    }
-
-    public void setCorrectCount(int correctCount) {
-        this.correctCount = correctCount;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }

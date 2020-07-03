@@ -18,7 +18,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Test Number"
+            android:text="Bài số:"
             android:textColor="#020202"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +29,7 @@
             app:layout_constraintVertical_bias="0.162" />
 
         <TextView
-            android:id="@+id/count_correct"
+            android:id="@+id/duration"
             android:layout_width="113dp"
             android:layout_height="22dp"
             android:layout_marginStart="8dp"
@@ -37,34 +37,15 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Correct:"
+            android:text="Thời gian:"
             android:textColor="#000001"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.608"
+            app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/number"
-            app:layout_constraintVertical_bias="0.098" />
-
-        <TextView
-            android:id="@+id/count_fail"
-            android:layout_width="106dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Fail:"
-            android:textColor="#0A0A0A"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.579"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/count_correct"
-            app:layout_constraintVertical_bias="0.152" />
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

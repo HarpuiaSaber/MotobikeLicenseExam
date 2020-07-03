@@ -34,14 +34,13 @@
 
         <ImageView
             android:id="@+id/question_image"
-            android:layout_width="375dp"
-            android:layout_height="165dp"
+            android:layout_width="377dp"
+            android:layout_height="47dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:layout_weight="2"
-            app:srcCompat="@drawable/bb3" />
+            android:layout_weight="2" />
 
         <RadioGroup
             android:id="@+id/btn_group"
@@ -60,21 +59,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="a" />
+                android:text="a"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/btn_b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="b" />
+                android:text="b"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/btn_c"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="c" />
+                android:text="c"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/btn_d"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="d"
+                android:textSize="18sp" />
         </RadioGroup>
     </LinearLayout>
 
