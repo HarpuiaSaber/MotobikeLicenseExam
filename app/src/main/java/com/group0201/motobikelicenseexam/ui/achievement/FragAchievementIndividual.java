@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.ui.AppBarConfiguration;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -23,12 +22,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.group0201.motobikelicenseexam.R;
-import com.group0201.motobikelicenseexam.model.Test;
 import com.group0201.motobikelicenseexam.model.User;
-import com.group0201.motobikelicenseexam.model.UserResult;
+import com.group0201.motobikelicenseexam.model.Result;
 
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -58,8 +55,8 @@ public class FragAchievementIndividual extends Fragment {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            UserResult[] testResponse = gson.fromJson(response, UserResult[].class);
-                            List<UserResult> tests = Arrays.asList(testResponse);
+                            Result[] testResponse = gson.fromJson(response, Result[].class);
+                            List<Result> tests = Arrays.asList(testResponse);
                             //show view
                             personalAchievementViewAdapter = new PersonalAchievementViewAdapter(tests);
                             listView.setAdapter(personalAchievementViewAdapter);

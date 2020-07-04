@@ -6,15 +6,15 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.group0201.motobikelicenseexam.R;
-import com.group0201.motobikelicenseexam.model.UserResult;
+import com.group0201.motobikelicenseexam.model.Result;
 import com.group0201.motobikelicenseexam.utils.TimeUtils;
 
 import java.util.List;
 
 public class PersonalAchievementViewAdapter extends BaseAdapter {
-    private List<UserResult> list;
+    private List<Result> list;
 
-    public PersonalAchievementViewAdapter(List<UserResult> list) {
+    public PersonalAchievementViewAdapter(List<Result> list) {
         this.list = list;
     }
 
@@ -41,7 +41,7 @@ public class PersonalAchievementViewAdapter extends BaseAdapter {
         } else {
             root = convertView;
         }
-        UserResult result = (UserResult) getItem(position);
+        Result result = (Result) getItem(position);
         ((TextView) root.findViewById(R.id.bai)).setText(String.format("%s", result.getContent()));
         ((TextView) root.findViewById(R.id.rightAnswer)).setText(String.format("%s/20", result.getTotalCorrect()));
         ((TextView) root.findViewById(R.id.time)).setText(String.format("%s", TimeUtils.secondToMinuteAndSecond(result.getTime())));

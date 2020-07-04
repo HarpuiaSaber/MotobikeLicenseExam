@@ -2,7 +2,7 @@ package com.group0201.motobikelicenseexam.model;
 
 import java.io.Serializable;
 
-public class UserResult implements Serializable {
+public class Result implements Serializable {
     private long id;
     private String content;
     private int time;
@@ -10,10 +10,10 @@ public class UserResult implements Serializable {
     private String dateAt;
     private int totalCorrect;
 
-    public UserResult() {
+    public Result() {
     }
 
-    public UserResult(long id, String content, int time, int type, String dateAt, int totalCorrect) {
+    public Result(long id, String content, int time, int type, String dateAt, int totalCorrect) {
         this.id = id;
         this.content = content;
         this.time = time;

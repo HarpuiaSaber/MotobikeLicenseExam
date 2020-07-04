@@ -57,7 +57,6 @@ public class LoginFragment extends Fragment {
                             editor.putString("user", response);
                             editor.commit();
                             Intent intent = new Intent(root.getContext(), HomeActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY); //no back
                             startActivity(intent);
                         }
                     }, new Response.ErrorListener() {
