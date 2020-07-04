@@ -232,7 +232,7 @@
             android:id="@+id/signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#0C3B71"
+            android:background="#4CAF50"
             android:text="ĐĂNG KÝ"
             android:textColor="#FFFFFF" />
 

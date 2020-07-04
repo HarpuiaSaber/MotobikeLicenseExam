@@ -24,12 +24,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.group0201.motobikelicenseexam.HomeActivity;
 import com.group0201.motobikelicenseexam.R;
+import com.group0201.motobikelicenseexam.ui.signup.SignupFragment;
 
 public class LoginFragment extends Fragment {
 
     private LoginViewModel galleryViewModel;
     private EditText username, password;
-    private Button login;
+    private Button login, signup;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class LoginFragment extends Fragment {
         username = root.findViewById(R.id.username);
         password = root.findViewById(R.id.password);
         login = root.findViewById(R.id.login);
+        signup = root.findViewById(R.id.signup);
 
         login.setOnClickListener((v) -> {
             RequestQueue queue = Volley.newRequestQueue(root.getContext());
