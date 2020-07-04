@@ -6,14 +6,15 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.group0201.motobikelicenseexam.R;
-import com.group0201.motobikelicenseexam.model.Test;
+import com.group0201.motobikelicenseexam.model.Result;
+import com.group0201.motobikelicenseexam.utils.TimeUtils;
 
 import java.util.List;
 
 public class PersonalAchievementViewAdapter extends BaseAdapter {
-    private List<Test> list;
+    private List<Result> list;
 
-    public PersonalAchievementViewAdapter(List<Test> list) {
+    public PersonalAchievementViewAdapter(List<Result> list) {
         this.list = list;
     }
 
@@ -40,10 +41,11 @@ public class PersonalAchievementViewAdapter extends BaseAdapter {
         } else {
             root = convertView;
         }
-        Test test = (Test) getItem(position);
-        ((TextView) root.findViewById(R.id.bai)).setText(String.format("%s", test.getContent()));
-        ((TextView) root.findViewById(R.id.rightAnswer)).setText(String.format("%s/20", test.getUserResult()));
-        ((TextView) root.findViewById(R.id.time)).setText(String.format("%s s", test.getTime()));
+        Result result = (Result) getItem(position);
+        ((TextView) root.findViewById(R.id.bai)).setText(String.format("%s", result.getContent()));
+        ((TextView) root.findViewById(R.id.rightAnswer)).setText(String.format("%s/20", result.getTotalCorrect()));
+        ((TextView) root.findViewById(R.id.time)).setText(String.format("%s", TimeUtils.secondToMinuteAndSecond(result.getTime())));
+        ((TextView) root.findViewById(R.id.dateAt)).setText(String.format("%s", result.getDateAt()));
         return root;
     }
 }

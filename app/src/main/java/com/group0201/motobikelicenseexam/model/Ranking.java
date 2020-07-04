@@ -1,21 +1,25 @@
 package com.group0201.motobikelicenseexam.model;
 
-public class Ranking {
+import java.io.Serializable;
+
+public class Ranking implements Serializable {
     private long UserId;
     private String userName;
     private long ExamId;
     private int time;
     private int totalCorrect;
+    private String dateAt;
 
     public Ranking() {
     }
 
-    public Ranking(long userId, String userName, long examId, int time, int totalCorrect) {
+    public Ranking(long userId, String userName, long examId, int time, int totalCorrect, String dateAt) {
         UserId = userId;
         this.userName = userName;
         ExamId = examId;
         this.time = time;
         this.totalCorrect = totalCorrect;
+        this.dateAt = dateAt;
     }
 
     public long getUserId() {
@@ -56,5 +60,13 @@ public class Ranking {
 
     public void setTotalCorrect(int totalCorrect) {
         this.totalCorrect = totalCorrect;
+    }
+
+    public String getDateAt() {
+        return dateAt;
+    }
+
+    public void setDateAt(String dateAt) {
+        this.dateAt = dateAt;
     }
 }

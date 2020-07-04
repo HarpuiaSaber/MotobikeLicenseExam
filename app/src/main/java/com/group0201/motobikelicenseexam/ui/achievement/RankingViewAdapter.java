@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.group0201.motobikelicenseexam.R;
 import com.group0201.motobikelicenseexam.model.Ranking;
 import com.group0201.motobikelicenseexam.model.Test;
+import com.group0201.motobikelicenseexam.utils.TimeUtils;
 
 import java.util.List;
 
@@ -43,7 +44,8 @@ public class RankingViewAdapter extends BaseAdapter {
         Ranking ranking = (Ranking) getItem(position);
         ((TextView) root.findViewById(R.id.bai)).setText(String.format("%s", ranking.getUserName()));
         ((TextView) root.findViewById(R.id.rightAnswer)).setText(String.format("%s/20", ranking.getTotalCorrect()));
-        ((TextView) root.findViewById(R.id.time)).setText(String.format("%s s", ranking.getTime()));
+        ((TextView) root.findViewById(R.id.time)).setText(String.format("%s", TimeUtils.secondToMinuteAndSecond(ranking.getTime())));
+        ((TextView) root.findViewById(R.id.dateAt)).setText(String.format("%s", ranking.getDateAt()));
         return root;
     }
 }

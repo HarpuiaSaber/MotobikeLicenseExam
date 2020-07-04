@@ -1,6 +1,7 @@
 package com.group0201.motobikelicenseexam.ui.home;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,23 +10,27 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.gson.Gson;
 import com.group0201.motobikelicenseexam.AchievementActivites;
 import com.group0201.motobikelicenseexam.ExamListActivity;
 import com.group0201.motobikelicenseexam.LawViewModel;
 import com.group0201.motobikelicenseexam.R;
 import com.group0201.motobikelicenseexam.TraficSignViewModel;
+import com.group0201.motobikelicenseexam.model.User;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private WebView webView;
     private ImageButton exam, theory, law, fail, sign, achievment;
+    private SharedPreferences sharedPreferences;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -51,8 +56,14 @@ public class HomeFragment extends Fragment {
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         webView.loadUrl(getString(R.string.baseUrl) + "Home/Infor");
 
+        sharedPreferences = root.getContext().getSharedPreferences("group0201", root.getContext().MODE_PRIVATE);
+        String userJson = sharedPreferences.getString("user", null);
         exam.setOnClickListener((v) -> {
-            startActivity(new Intent(root.getContext(), ExamListActivity.class));
+            if (userJson != null) {
+                startActivity(new Intent(root.getContext(), ExamListActivity.class));
+            } else {
+                Toast.makeText(root.getContext(), "Phải đăng nhập trước", Toast.LENGTH_SHORT).show();
+            }
         });
         theory.setOnClickListener((v) -> {
         });
@@ -60,12 +71,21 @@ public class HomeFragment extends Fragment {
             startActivity(new Intent(root.getContext(), LawViewModel.class));
         });
         fail.setOnClickListener((v) -> {
+            if (userJson != null) {
+                startActivity(new Intent(root.getContext(), ExamListActivity.class));
+            } else {
+                Toast.makeText(root.getContext(), "Phải đăng nhập trước", Toast.LENGTH_SHORT).show();
+            }
         });
         sign.setOnClickListener((v) -> {
             startActivity(new Intent(root.getContext(), TraficSignViewModel.class));
         });
         achievment.setOnClickListener((v) -> {
-            startActivity(new Intent(root.getContext(), AchievementActivites.class));
+            if (userJson != null) {
+                startActivity(new Intent(root.getContext(), AchievementActivites.class));
+            } else {
+                Toast.makeText(root.getContext(), "Phải đăng nhập trước", Toast.LENGTH_SHORT).show();
+            }
         });
 
         return root;

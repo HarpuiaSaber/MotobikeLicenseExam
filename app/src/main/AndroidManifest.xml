@@ -9,6 +9,7 @@
         android:noHistory="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:screenOrientation="nosensor"
         android:theme="@style/AppTheme">
         <activity android:name=".ExamActivity"></activity>
         <activity android:name=".ExamListActivity" />
@@ -26,13 +27,10 @@
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 

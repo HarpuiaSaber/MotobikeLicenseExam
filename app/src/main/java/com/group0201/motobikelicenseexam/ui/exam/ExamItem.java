@@ -46,7 +46,6 @@ public class ExamItem extends Fragment implements View.OnClickListener {
     private ArrayList<Boolean> corrections;
     private PassData passData;
 
-
     public ExamItem() {
 
     }
@@ -61,7 +60,7 @@ public class ExamItem extends Fragment implements View.OnClickListener {
             args.putString("answers"+i, anses[i].getContent());
             args.putBoolean("is_correct"+i,anses[i].getIsCorrect());
         }
-        args.putInt("answer_count",anses.length);
+        args.putInt("answer_count", anses.length);
         examitem.setArguments(args);
         return examitem;
     }
@@ -90,11 +89,20 @@ public class ExamItem extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.item_layout, container, false);
         questionText = (TextView) view.findViewById(R.id.question);
         image = (ImageView) view.findViewById(R.id.question_image);
-        btnA = (CheckBox) view.findViewById(R.id.btn_a);
-        btnB = (CheckBox) view.findViewById(R.id.btn_b);
-        btnC = (CheckBox) view.findViewById(R.id.btn_c);
-        btnD = (CheckBox) view.findViewById(R.id.btn_d);
-        new DownLoadImageTask(this.image).execute(this.getContext().getString(R.string.baseUrl) +"images/" +this.imageURI);
+        btnA = (RadioButton) view.findViewById(R.id.btn_a);
+        btnB = (RadioButton) view.findViewById(R.id.btn_b);
+        btnC = (RadioButton) view.findViewById(R.id.btn_c);
+        btnD = (RadioButton) view.findViewById(R.id.btn_d);
+        if (this.imageURI != null) {
+            image.getLayoutParams().height = 500;
+            new DownLoadImageTask(this.image).execute(this.getContext().getString(R.string.baseUrl) + "images/" + this.imageURI);
+        }
+        this.ansGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                onAnswerButtonCheckedChanged(group, checkedId);
+            }
+        });
         return view;
     }
 
@@ -103,8 +111,8 @@ public class ExamItem extends Fragment implements View.OnClickListener {
         super.onActivityCreated(savedInstanceState);
         this.questionText.setText(questionString);
 //        new DownLoadImageTask(this.image).execute(this.getContext().getString(R.string.baseUrl) +"images/" +this.imageURI);
-        switch (this.anscount){
-            case 2:{
+        switch (this.anscount) {
+            case 2: {
                 this.btnA.setText(anses.get(0));
                 this.btnB.setText(anses.get(1));
                 this.btnC.setVisibility(View.INVISIBLE);
@@ -113,7 +121,7 @@ public class ExamItem extends Fragment implements View.OnClickListener {
                 this.btnD.setClickable(false);
                 break;
             }
-            case 3:{
+            case 3: {
                 this.btnA.setText(anses.get(0));
                 this.btnB.setText(anses.get(1));
                 this.btnC.setText(anses.get(2));
@@ -121,7 +129,7 @@ public class ExamItem extends Fragment implements View.OnClickListener {
                 this.btnD.setClickable(false);
                 break;
             }
-            default:{
+            default: {
                 this.btnA.setText(anses.get(0));
                 this.btnB.setText(anses.get(1));
                 this.btnC.setText(anses.get(2));
@@ -183,7 +191,7 @@ public class ExamItem extends Fragment implements View.OnClickListener {
     private class DownLoadImageTask extends AsyncTask<String,Void, Bitmap> {
         ImageView imageView;
 
-        public DownLoadImageTask(ImageView imageView){
+        public DownLoadImageTask(ImageView imageView) {
             this.imageView = imageView;
         }
 
@@ -191,17 +199,17 @@ public class ExamItem extends Fragment implements View.OnClickListener {
             doInBackground(Params... params)
                 Override this method to perform a computation on a background thread.
          */
-        protected Bitmap doInBackground(String...urls){
+        protected Bitmap doInBackground(String... urls) {
             String urlOfImage = urls[0];
             Bitmap logo = null;
-            try{
+            try {
                 InputStream is = new URL(urlOfImage).openStream();
                 /*
                     decodeStream(InputStream is)
                         Decode an input stream into a bitmap.
                  */
                 logo = BitmapFactory.decodeStream(is);
-            }catch(Exception e){ // Catch the download exception
+            } catch (Exception e) { // Catch the download exception
                 e.printStackTrace();
             }
             return logo;
@@ -211,7 +219,7 @@ public class ExamItem extends Fragment implements View.OnClickListener {
             onPostExecute(Result result)
                 Runs on the UI thread after doInBackground(Params...).
          */
-        protected void onPostExecute(Bitmap result){
+        protected void onPostExecute(Bitmap result) {
             imageView.setImageBitmap(result);
         }
     }

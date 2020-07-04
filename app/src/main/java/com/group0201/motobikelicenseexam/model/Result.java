@@ -2,22 +2,24 @@ package com.group0201.motobikelicenseexam.model;
 
 import java.io.Serializable;
 
-public class Test implements Serializable {
+public class Result implements Serializable {
     private long id;
     private String content;
     private int time;
     private int type;
-    private String createDate;
+    private String dateAt;
+    private int totalCorrect;
 
-    public Test() {
+    public Result() {
     }
 
-    public Test(long id, String content, int time, int type, String createDate) {
+    public Result(long id, String content, int time, int type, String dateAt, int totalCorrect) {
         this.id = id;
         this.content = content;
         this.time = time;
         this.type = type;
-        this.createDate = createDate;
+        this.dateAt = dateAt;
+        this.totalCorrect = totalCorrect;
     }
 
     public long getId() {
@@ -52,12 +54,19 @@ public class Test implements Serializable {
         this.type = type;
     }
 
-    public String getCreateDate() {
-        return createDate;
+    public String getDateAt() {
+        return dateAt;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
+    public void setDateAt(String dateAt) {
+        this.dateAt = dateAt;
     }
 
+    public int getTotalCorrect() {
+        return totalCorrect;
+    }
+
+    public void setTotalCorrect(int totalCorrect) {
+        this.totalCorrect = totalCorrect;
+    }
 }
