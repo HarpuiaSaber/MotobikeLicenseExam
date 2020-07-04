@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,7 +14,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
-        android:weightSum="4"
+        android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +22,7 @@
 
         <TextView
             android:id="@+id/question"
-            android:layout_width="378dp"
+            android:layout_width="395dp"
             android:layout_height="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -34,58 +35,50 @@
 
         <ImageView
             android:id="@+id/question_image"
-            android:layout_width="377dp"
-            android:layout_height="47dp"
+            android:layout_width="393dp"
+            android:layout_height="75dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_weight="2" />
 
-        <RadioGroup
-            android:id="@+id/btn_group"
-            android:layout_width="384dp"
-            android:layout_height="223dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="398dp"
+            android:layout_height="276dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="4">
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/btn_a"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="a"
-                android:textSize="18sp" />
+                android:text="a" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/btn_b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="b"
-                android:textSize="18sp" />
+                android:text="b" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/btn_c"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="c"
-                android:textSize="18sp" />
+                android:text="c" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/btn_d"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="d"
-                android:textSize="18sp" />
-        </RadioGroup>
+                android:text="d" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

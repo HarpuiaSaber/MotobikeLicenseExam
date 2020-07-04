@@ -58,6 +58,7 @@ public class ExamListActivity extends AppCompatActivity {
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 Intent intent=new Intent(ExamListActivity.this,ExamActivity.class);
                                 intent.putExtra("exam_id",arrIcon.get(position).getId());
+                                intent.putExtra("duration",arrIcon.get(position).getTime());
                                 startActivity(intent);
                             }
                         });

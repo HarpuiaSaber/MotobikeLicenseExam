@@ -1,6 +1,7 @@
 package com.group0201.motobikelicenseexam.ui.exam;
 
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,6 +22,7 @@ import androidx.fragment.app.Fragment;
 
 import com.group0201.motobikelicenseexam.R;
 import com.group0201.motobikelicenseexam.model.Answer;
+import com.group0201.motobikelicenseexam.model.AnswerResult;
 import com.group0201.motobikelicenseexam.model.Question;
 
 import java.io.InputStream;
@@ -28,33 +31,35 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ExamItem extends Fragment {
+public class ExamItem extends Fragment implements View.OnClickListener {
     private TextView questionText;
     private ImageView image;
-    private RadioGroup ansGroup;
-    private RadioButton btnA;
-    private RadioButton btnB;
-    private RadioButton btnC;
-    private RadioButton btnD;
+    private CheckBox btnA;
+    private CheckBox btnB;
+    private CheckBox btnC;
+    private CheckBox btnD;
+    private long questionId;
     private int anscount;
     private String questionString;
     private String imageURI;
     private ArrayList<String> anses;
-    private Question question;
-
+    private ArrayList<Boolean> corrections;
+    private PassData passData;
 
 
     public ExamItem() {
 
     }
 
-    public static ExamItem newInstance( String questionString, String imageURI, Answer[] anses) {
+    public static ExamItem newInstance( long quesID,String questionString, String imageURI, Answer[] anses) {
         ExamItem examitem = new ExamItem();
         Bundle args = new Bundle();
+        args.putLong("id",quesID);
         args.putString("question", questionString);
         args.putString("image", imageURI);
         for(int i=0;i<anses.length;i++){
             args.putString("answers"+i, anses[i].getContent());
+            args.putBoolean("is_correct"+i,anses[i].getIsCorrect());
         }
         args.putInt("answer_count",anses.length);
         examitem.setArguments(args);
@@ -65,13 +70,16 @@ public class ExamItem extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.anses=new ArrayList<>();
+        this.corrections=new ArrayList<>();
+        this.questionId=getArguments().getLong("id");
         this.imageURI = getArguments().getString("image");
         this.questionString = getArguments().getString("question", "dont have question");
         this.anscount=getArguments().getInt("answer_count",4);
-        String[] ansDb=new String[anscount];
         for(int i=0;i<anscount;i++){
             String ans=getArguments().getString("answers"+i,"");
+            Boolean correct=getArguments().getBoolean("is_correct"+i,false);
             anses.add(ans);
+            corrections.add(correct);
         }
     }
 
@@ -82,24 +90,12 @@ public class ExamItem extends Fragment {
         View view = inflater.inflate(R.layout.item_layout, container, false);
         questionText = (TextView) view.findViewById(R.id.question);
         image = (ImageView) view.findViewById(R.id.question_image);
-        ansGroup = (RadioGroup) view.findViewById(R.id.btn_group);
-        btnA = (RadioButton) view.findViewById(R.id.btn_a);
-        btnB = (RadioButton) view.findViewById(R.id.btn_b);
-        btnC = (RadioButton) view.findViewById(R.id.btn_c);
-        btnD=(RadioButton) view.findViewById(R.id.btn_d);
+        btnA = (CheckBox) view.findViewById(R.id.btn_a);
+        btnB = (CheckBox) view.findViewById(R.id.btn_b);
+        btnC = (CheckBox) view.findViewById(R.id.btn_c);
+        btnD = (CheckBox) view.findViewById(R.id.btn_d);
         new DownLoadImageTask(this.image).execute(this.getContext().getString(R.string.baseUrl) +"images/" +this.imageURI);
-        this.ansGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                onAnswerButtonCheckedChanged(group, checkedId);
-            }
-        });
-
         return view;
-    }
-
-    public void onAnswerButtonCheckedChanged(RadioGroup group, int checkedId) {
-        int checkedAnsId = group.getCheckedRadioButtonId();
     }
 
     @Override
@@ -133,7 +129,56 @@ public class ExamItem extends Fragment {
                 break;
             }
         }
+        this.btnA.setOnClickListener(this);
+        this.btnB.setOnClickListener(this);
+        this.btnC.setOnClickListener(this);
+        this.btnD.setOnClickListener(this);
     }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.passData=(PassData) context;
+    }
+    public void onPassingData(long quId, boolean isCr){
+        passData.onDataPass(quId,isCr);
+    }
+    @Override
+    public void onClick(View view) {
+        boolean iscr;
+        boolean[] checkedPosition={false,false,false,false};
+       if(view.getId()==R.id.btn_a ||
+               view.getId()==R.id.btn_b||
+               view.getId()==R.id.btn_c||
+               view.getId()==R.id.btn_d){
+           if(this.btnA.isChecked()){
+               checkedPosition[0]=true;
+           }
+           if(this.btnB.isChecked()){
+               checkedPosition[1]=true;
+           }
+           if(this.btnC.isChecked()){
+               checkedPosition[2]=true;
+           }
+           if(this.btnD.isChecked()){
+               checkedPosition[3]=true;
+           }
+       }
+       boolean equal=true;
+       for(int i=0;i<corrections.size();i++){
+           if(checkedPosition[i]!=corrections.get(i)){
+               equal=false;
+               break;
+           }
+       }
+       if(equal==false){
+           iscr=false;
+       }else{
+           iscr=true;
+       }
+       onPassingData(questionId,iscr);
+    }
+
 
     private class DownLoadImageTask extends AsyncTask<String,Void, Bitmap> {
         ImageView imageView;
@@ -169,5 +214,8 @@ public class ExamItem extends Fragment {
         protected void onPostExecute(Bitmap result){
             imageView.setImageBitmap(result);
         }
+    }
+    public interface PassData{
+        public void onDataPass(long id, boolean is);
     }
 }
