@@ -43,20 +43,19 @@ public class ExamItem extends Fragment {
     private Question question;
 
 
-
     public ExamItem() {
 
     }
 
-    public static ExamItem newInstance( String questionString, String imageURI, Answer[] anses) {
+    public static ExamItem newInstance(String questionString, String imageURI, Answer[] anses) {
         ExamItem examitem = new ExamItem();
         Bundle args = new Bundle();
         args.putString("question", questionString);
         args.putString("image", imageURI);
-        for(int i=0;i<anses.length;i++){
-            args.putString("answers"+i, anses[i].getContent());
+        for (int i = 0; i < anses.length; i++) {
+            args.putString("answers" + i, anses[i].getContent());
         }
-        args.putInt("answer_count",anses.length);
+        args.putInt("answer_count", anses.length);
         examitem.setArguments(args);
         return examitem;
     }
@@ -64,13 +63,13 @@ public class ExamItem extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.anses=new ArrayList<>();
+        this.anses = new ArrayList<>();
         this.imageURI = getArguments().getString("image");
         this.questionString = getArguments().getString("question", "dont have question");
-        this.anscount=getArguments().getInt("answer_count",4);
-        String[] ansDb=new String[anscount];
-        for(int i=0;i<anscount;i++){
-            String ans=getArguments().getString("answers"+i,"");
+        this.anscount = getArguments().getInt("answer_count", 4);
+        String[] ansDb = new String[anscount];
+        for (int i = 0; i < anscount; i++) {
+            String ans = getArguments().getString("answers" + i, "");
             anses.add(ans);
         }
     }
@@ -86,8 +85,11 @@ public class ExamItem extends Fragment {
         btnA = (RadioButton) view.findViewById(R.id.btn_a);
         btnB = (RadioButton) view.findViewById(R.id.btn_b);
         btnC = (RadioButton) view.findViewById(R.id.btn_c);
-        btnD=(RadioButton) view.findViewById(R.id.btn_d);
-        new DownLoadImageTask(this.image).execute(this.getContext().getString(R.string.baseUrl) +"images/" +this.imageURI);
+        btnD = (RadioButton) view.findViewById(R.id.btn_d);
+        if (this.imageURI != null) {
+            image.getLayoutParams().height = 500;
+            new DownLoadImageTask(this.image).execute(this.getContext().getString(R.string.baseUrl) + "images/" + this.imageURI);
+        }
         this.ansGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -107,8 +109,8 @@ public class ExamItem extends Fragment {
         super.onActivityCreated(savedInstanceState);
         this.questionText.setText(questionString);
 //        new DownLoadImageTask(this.image).execute(this.getContext().getString(R.string.baseUrl) +"images/" +this.imageURI);
-        switch (this.anscount){
-            case 2:{
+        switch (this.anscount) {
+            case 2: {
                 this.btnA.setText(anses.get(0));
                 this.btnB.setText(anses.get(1));
                 this.btnC.setVisibility(View.INVISIBLE);
@@ -117,7 +119,7 @@ public class ExamItem extends Fragment {
                 this.btnD.setClickable(false);
                 break;
             }
-            case 3:{
+            case 3: {
                 this.btnA.setText(anses.get(0));
                 this.btnB.setText(anses.get(1));
                 this.btnC.setText(anses.get(2));
@@ -125,7 +127,7 @@ public class ExamItem extends Fragment {
                 this.btnD.setClickable(false);
                 break;
             }
-            default:{
+            default: {
                 this.btnA.setText(anses.get(0));
                 this.btnB.setText(anses.get(1));
                 this.btnC.setText(anses.get(2));
@@ -135,10 +137,10 @@ public class ExamItem extends Fragment {
         }
     }
 
-    private class DownLoadImageTask extends AsyncTask<String,Void, Bitmap> {
+    private class DownLoadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView imageView;
 
-        public DownLoadImageTask(ImageView imageView){
+        public DownLoadImageTask(ImageView imageView) {
             this.imageView = imageView;
         }
 
@@ -146,17 +148,17 @@ public class ExamItem extends Fragment {
             doInBackground(Params... params)
                 Override this method to perform a computation on a background thread.
          */
-        protected Bitmap doInBackground(String...urls){
+        protected Bitmap doInBackground(String... urls) {
             String urlOfImage = urls[0];
             Bitmap logo = null;
-            try{
+            try {
                 InputStream is = new URL(urlOfImage).openStream();
                 /*
                     decodeStream(InputStream is)
                         Decode an input stream into a bitmap.
                  */
                 logo = BitmapFactory.decodeStream(is);
-            }catch(Exception e){ // Catch the download exception
+            } catch (Exception e) { // Catch the download exception
                 e.printStackTrace();
             }
             return logo;
@@ -166,7 +168,7 @@ public class ExamItem extends Fragment {
             onPostExecute(Result result)
                 Runs on the UI thread after doInBackground(Params...).
          */
-        protected void onPostExecute(Bitmap result){
+        protected void onPostExecute(Bitmap result) {
             imageView.setImageBitmap(result);
         }
     }
