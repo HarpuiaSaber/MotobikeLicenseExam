@@ -26,7 +26,7 @@ public class ItemAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int i) {
 
-        return ExamItem.newInstance(questions.getQuestions().get(i).getContent(),
+        return ExamItem.newInstance(questions.getQuestions().get(i).getId(),questions.getQuestions().get(i).getContent(),
                             questions.getQuestions().get(i).getImage(),
                             questions.getQuestions().get(i).getAnswers());
     }

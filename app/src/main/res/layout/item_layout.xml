@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="4"
+        android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,38 +35,35 @@
             android:layout_weight="1"
             android:padding="5dp">
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/btn_a"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="a"
-                android:textSize="18sp" />
+                android:text="a" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/btn_b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="b"
-                android:textSize="18sp" />
+                android:text="b" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/btn_c"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="c"
-                android:textSize="18sp" />
+                android:text="c" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/btn_d"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="d"
-                android:textSize="18sp" />
-        </RadioGroup>
+                android:text="d" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
