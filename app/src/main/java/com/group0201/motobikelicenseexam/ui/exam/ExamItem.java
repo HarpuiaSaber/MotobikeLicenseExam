@@ -89,20 +89,14 @@ public class ExamItem extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.item_layout, container, false);
         questionText = (TextView) view.findViewById(R.id.question);
         image = (ImageView) view.findViewById(R.id.question_image);
-        btnA = (RadioButton) view.findViewById(R.id.btn_a);
-        btnB = (RadioButton) view.findViewById(R.id.btn_b);
-        btnC = (RadioButton) view.findViewById(R.id.btn_c);
-        btnD = (RadioButton) view.findViewById(R.id.btn_d);
+        btnA = (CheckBox) view.findViewById(R.id.btn_a);
+        btnB = (CheckBox) view.findViewById(R.id.btn_b);
+        btnC = (CheckBox) view.findViewById(R.id.btn_c);
+        btnD = (CheckBox) view.findViewById(R.id.btn_d);
         if (this.imageURI != null) {
             image.getLayoutParams().height = 500;
             new DownLoadImageTask(this.image).execute(this.getContext().getString(R.string.baseUrl) + "images/" + this.imageURI);
         }
-        this.ansGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                onAnswerButtonCheckedChanged(group, checkedId);
-            }
-        });
         return view;
     }
 
