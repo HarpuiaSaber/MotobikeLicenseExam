@@ -25,6 +25,7 @@ import com.google.gson.Gson;
 import com.group0201.motobikelicenseexam.R;
 import com.group0201.motobikelicenseexam.model.Test;
 import com.group0201.motobikelicenseexam.model.User;
+import com.group0201.motobikelicenseexam.model.UserResult;
 
 
 import java.util.ArrayList;
@@ -57,8 +58,8 @@ public class FragAchievementIndividual extends Fragment {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Test[] testResponse = gson.fromJson(response, Test[].class);
-                            List<Test> tests = Arrays.asList(testResponse);
+                            UserResult[] testResponse = gson.fromJson(response, UserResult[].class);
+                            List<UserResult> tests = Arrays.asList(testResponse);
                             //show view
                             personalAchievementViewAdapter = new PersonalAchievementViewAdapter(tests);
                             listView.setAdapter(personalAchievementViewAdapter);

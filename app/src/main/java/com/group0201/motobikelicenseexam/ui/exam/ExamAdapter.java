@@ -10,12 +10,13 @@ import android.widget.TextView;
 
 import com.group0201.motobikelicenseexam.R;
 import com.group0201.motobikelicenseexam.model.Test;
+import com.group0201.motobikelicenseexam.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ExamAdapter extends BaseAdapter {
-//    private ArrayList<ExamIcon> arrIcon;
+    //    private ArrayList<ExamIcon> arrIcon;
     private List<Test> arrIcon;
     private Context context;
     private LayoutInflater layoutInflater;
@@ -44,25 +45,25 @@ public class ExamAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        this.context=parent.getContext();
-        layoutInflater=(LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        if(convertView==null){
-            holder=new ViewHolder();
-            convertView=layoutInflater.inflate(R.layout.exam_button_layout,null);
-            holder.number=(TextView) convertView.findViewById(R.id.number);
-            holder.duration =(TextView) convertView.findViewById(R.id.duration);
+        this.context = parent.getContext();
+        layoutInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        if (convertView == null) {
+            holder = new ViewHolder();
+            convertView = layoutInflater.inflate(R.layout.exam_button_layout, null);
+            holder.number = (TextView) convertView.findViewById(R.id.number);
+            holder.duration = (TextView) convertView.findViewById(R.id.duration);
             convertView.setTag(holder);
-        }else{
-            holder=(ViewHolder)convertView.getTag();
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 //        ExamIcon exam=this.arrIcon.get(position);
-        Test test=this.arrIcon.get(position);
-        holder.number.setText("Bài số:"+test.getContent());
-        holder.duration.setText("Thời gian: "+test.getTime());
+        Test test = this.arrIcon.get(position);
+        holder.number.setText("Tên bài: " + test.getContent());
+        holder.duration.setText("Thời gian: " + TimeUtils.secondToMinuteAndSecond(test.getTime()) + " phút");
         return convertView;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         TextView number, duration;
     }
 }
