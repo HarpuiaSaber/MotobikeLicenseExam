@@ -15,11 +15,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <LinearLayout
             android:id="@+id/timer_layout"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_marginTop="3dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:weightSum="4">
@@ -31,7 +31,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:text="00"
-                android:textAlignment="center"
+                android:textColor="#F44336"
+                android:gravity="right"
                 android:textSize="24sp" />
 
             <TextView
@@ -41,6 +42,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:text=":"
+                android:textColor="#F44336"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -50,16 +52,16 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
+                android:gravity="left"
+                android:textColor="#F44336"
                 android:text="00"
-                android:textAlignment="center"
                 android:textSize="24sp" />
-
             <Button
                 android:id="@+id/submit_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
+                android:background="#E91E63"
                 android:text="Nộp Bài"
                 android:textSize="16sp"
                 android:textColor="#FFFFFF"/>
