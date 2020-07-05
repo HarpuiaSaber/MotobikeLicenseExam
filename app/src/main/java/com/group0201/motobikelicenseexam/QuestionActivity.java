@@ -145,6 +145,9 @@ public class QuestionActivity extends AppCompatActivity {
             }
             return logo;
         }
+        protected void onPostExecute(Bitmap result) {
+            imageView.setImageBitmap(result);
+        }
     }
 }
 
