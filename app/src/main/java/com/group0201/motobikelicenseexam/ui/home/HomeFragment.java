@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.gson.Gson;
 import com.group0201.motobikelicenseexam.AchievementActivites;
 import com.group0201.motobikelicenseexam.ExamListActivity;
+import com.group0201.motobikelicenseexam.FailActivity;
 import com.group0201.motobikelicenseexam.LawViewModel;
 import com.group0201.motobikelicenseexam.R;
 import com.group0201.motobikelicenseexam.TraficSignViewModel;
@@ -72,7 +73,7 @@ public class HomeFragment extends Fragment {
         });
         fail.setOnClickListener((v) -> {
             if (userJson != null) {
-                startActivity(new Intent(root.getContext(), ExamListActivity.class));
+                startActivity(new Intent(root.getContext(), FailActivity.class));
             } else {
                 Toast.makeText(root.getContext(), "Phải đăng nhập trước", Toast.LENGTH_SHORT).show();
             }
