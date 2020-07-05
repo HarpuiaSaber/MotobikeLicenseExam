@@ -16,19 +16,26 @@ public class ItemAdapter extends FragmentPagerAdapter {
 //    private ArrayList<Integer> corrections;
 //    private ArrayList<String> questions;
     private ListQuestion questions;
+    private int type;
     public ItemAdapter(FragmentManager fm,
-                       ListQuestion questions) {
+                       ListQuestion questions,int type) {
         super(fm);
         this.questions = questions;
+        this.type=type;
     }
 
 
     @Override
     public Fragment getItem(int i) {
-
-        return ExamItem.newInstance(questions.getQuestions().get(i).getId(),questions.getQuestions().get(i).getContent(),
-                            questions.getQuestions().get(i).getImage(),
-                            questions.getQuestions().get(i).getAnswers());
+        if(this.type==1){
+            return ExamItem.newInstance(questions.getQuestions().get(i).getId(),questions.getQuestions().get(i).getContent(),
+                    questions.getQuestions().get(i).getImage(),
+                    questions.getQuestions().get(i).getAnswers());
+        }else{
+            return PractiseItem.newInstance(questions.getQuestions().get(i).getId(),questions.getQuestions().get(i).getContent(),
+                    questions.getQuestions().get(i).getImage(),
+                    questions.getQuestions().get(i).getAnswers());
+        }
     }
 
     @Override

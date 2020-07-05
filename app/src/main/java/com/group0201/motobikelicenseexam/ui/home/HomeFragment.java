@@ -22,6 +22,7 @@ import com.group0201.motobikelicenseexam.AchievementActivites;
 import com.group0201.motobikelicenseexam.ExamListActivity;
 import com.group0201.motobikelicenseexam.FailActivity;
 import com.group0201.motobikelicenseexam.LawViewModel;
+import com.group0201.motobikelicenseexam.PractiseListActivity;
 import com.group0201.motobikelicenseexam.R;
 import com.group0201.motobikelicenseexam.TraficSignViewModel;
 import com.group0201.motobikelicenseexam.model.User;
@@ -38,6 +39,7 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         webView = root.findViewById(R.id.webView);
@@ -67,6 +69,7 @@ public class HomeFragment extends Fragment {
             }
         });
         theory.setOnClickListener((v) -> {
+            startActivity(new Intent(root.getContext(), PractiseListActivity.class));
         });
         law.setOnClickListener((v) -> {
             startActivity(new Intent(root.getContext(), LawViewModel.class));

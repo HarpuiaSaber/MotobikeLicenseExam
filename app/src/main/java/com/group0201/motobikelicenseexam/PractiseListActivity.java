@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -18,24 +17,22 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.group0201.motobikelicenseexam.model.Test;
-import com.group0201.motobikelicenseexam.model.User;
 import com.group0201.motobikelicenseexam.ui.exam.ExamAdapter;
-import com.group0201.motobikelicenseexam.ui.exam.ExamIcon;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class ExamListActivity extends AppCompatActivity {
+public class PractiseListActivity extends AppCompatActivity {
     private GridView listExam;
     private List<Test> arrIcon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exam_list);
-        listExam=(GridView) findViewById(R.id.list_exam);
+        setContentView(R.layout.activity_practise_list);
+        listExam=(GridView) findViewById(R.id.list_practise);
         init();
     }
+
     public void init(){
         this.arrIcon=new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -49,7 +46,7 @@ public class ExamListActivity extends AppCompatActivity {
 //                        User userFromDB = gson.fromJson(response, User.class);
                         Test[] testDB=gson.fromJson(response,Test[].class);
                         for(int i=0;i<testDB.length;i++){
-                            if(testDB[i].getType()==1){
+                            if(testDB[i].getType()==2){
                                 arrIcon.add(testDB[i]);
                             }
                         }
@@ -60,10 +57,9 @@ public class ExamListActivity extends AppCompatActivity {
                         listExam.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                Intent intent=new Intent(ExamListActivity.this,ExamActivity.class);
+                                Intent intent=new Intent(PractiseListActivity.this,PractiseActivity.class);
                                 intent.putExtra("exam_id",arrIcon.get(position).getId());
-                                intent.putExtra("duration",arrIcon.get(position).getTime());
-                                intent.putExtra("test_type",arrIcon.get(position).getType());
+                                intent.putExtra("exam_type",arrIcon.get(position).getType());
                                 startActivity(intent);
                             }
                         });

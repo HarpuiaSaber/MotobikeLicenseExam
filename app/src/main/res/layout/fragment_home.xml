@@ -49,14 +49,14 @@
                     android:orientation="vertical">
 
                     <ImageButton
-                        android:background="#0000"
                         android:id="@+id/exam"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.25"
+                        android:background="#0000"
                         android:gravity="center"
-                        android:src="@drawable/baithi"
-                        android:scaleType="fitCenter"/>
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/baithi" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
