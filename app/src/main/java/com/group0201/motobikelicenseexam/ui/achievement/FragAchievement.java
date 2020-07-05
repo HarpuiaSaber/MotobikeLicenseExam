@@ -49,7 +49,7 @@ public class FragAchievement extends Fragment {
         Gson gson = new Gson();
         Map<String, Long> spinnerMap = new HashMap<String, Long>();
         RequestQueue queue = Volley.newRequestQueue(root.getContext());
-        String url = getString(R.string.baseUrl) + "api/Exam/GetAll";
+        String url = getString(R.string.baseUrl) + "api/Exam/GetAllTrial";
         String url2 = getString(R.string.baseUrl) + "api/Exam/Ranking";
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,

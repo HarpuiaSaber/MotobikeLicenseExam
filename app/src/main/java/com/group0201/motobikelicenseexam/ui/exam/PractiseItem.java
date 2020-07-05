@@ -84,6 +84,10 @@ public class PractiseItem extends Fragment {
         btnB = (CheckBox) view.findViewById(R.id.btn_b);
         btnC = (CheckBox) view.findViewById(R.id.btn_c);
         btnD = (CheckBox) view.findViewById(R.id.btn_d);
+        this.btnA.setClickable(false);
+        this.btnB.setClickable(false);
+        this.btnC.setClickable(false);
+        this.btnD.setClickable(false);
         if (this.imageURI != null) {
             image.getLayoutParams().height = 500;
             new DownLoadImageTask(this.image).execute(this.getContext().getString(R.string.baseUrl) + "images/" + this.imageURI);
@@ -102,9 +106,7 @@ public class PractiseItem extends Fragment {
                 this.btnA.setText(anses.get(0));
                 this.btnB.setText(anses.get(1));
                 this.btnC.setVisibility(View.INVISIBLE);
-                this.btnC.setClickable(false);
                 this.btnD.setVisibility(View.INVISIBLE);
-                this.btnD.setClickable(false);
                 if(corrections.get(0)){
                     this.btnA.setChecked(true);
                 }
@@ -118,7 +120,7 @@ public class PractiseItem extends Fragment {
                 this.btnB.setText(anses.get(1));
                 this.btnC.setText(anses.get(2));
                 this.btnD.setVisibility(View.INVISIBLE);
-                this.btnD.setClickable(false);
+
                 if(corrections.get(0)){
                     this.btnA.setChecked(true);
                 }
