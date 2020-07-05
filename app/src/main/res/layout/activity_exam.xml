@@ -22,7 +22,7 @@
             android:layout_height="80dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:weightSum="3">
+            android:weightSum="4">
 
             <TextView
                 android:id="@+id/minutes"
@@ -56,11 +56,13 @@
 
             <Button
                 android:id="@+id/submit_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@color/colorPrimary"
                 android:text="Nộp Bài"
-                android:textSize="10sp" />
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"/>
         </LinearLayout>
 
         <androidx.viewpager.widget.ViewPager

@@ -161,19 +161,18 @@ public class ExamActivity extends AppCompatActivity implements ExamItem.PassData
     }
 
     public void showAlertDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Kết quả:");
-        builder.setMessage("Đúng "+correctMes+"/20 trong "+((testDur-(int)duration)/1000)+" giây");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Thoát", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent=new Intent(ExamActivity.this,ExamListActivity.class);
-                startActivity(intent);
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        new AlertDialog.Builder(this)
+                .setTitle("Kết quả:")
+                .setMessage("Đúng "+this.correctMes+"/20 trong "+((testDur-(int)duration)/1000)+" giây")
+                .setPositiveButton("Thoát", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .show();
     }
 
     public void submitResult(){

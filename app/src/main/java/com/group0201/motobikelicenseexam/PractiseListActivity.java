@@ -36,7 +36,7 @@ public class PractiseListActivity extends AppCompatActivity {
     public void init(){
         this.arrIcon=new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = getString(R.string.baseUrl) + "api/Exam/GetAll";
+        String url = getString(R.string.baseUrl) + "api/Exam/GetAllTheory";
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -46,7 +46,7 @@ public class PractiseListActivity extends AppCompatActivity {
 //                        User userFromDB = gson.fromJson(response, User.class);
                         Test[] testDB=gson.fromJson(response,Test[].class);
                         for(int i=0;i<testDB.length;i++){
-                            if(testDB[i].getType()==2){
+                            if(testDB[i].getType()==0){
                                 arrIcon.add(testDB[i]);
                             }
                         }

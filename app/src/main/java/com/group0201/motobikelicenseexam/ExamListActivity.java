@@ -39,7 +39,7 @@ public class ExamListActivity extends AppCompatActivity {
     public void init(){
         this.arrIcon=new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = getString(R.string.baseUrl) + "api/Exam/GetAll";
+        String url = getString(R.string.baseUrl) + "api/Exam/GetAllTrial";
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
