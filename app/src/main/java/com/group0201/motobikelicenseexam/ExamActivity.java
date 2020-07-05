@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,8 @@ public class ExamActivity extends AppCompatActivity implements ExamItem.PassData
     private ViewPager examPages;
     private TextView minute;
     private TextView second;
+    private Button btnsubmit;
+    private int type;
     private long examId;
     private int testDur;
     private int currentPage=0;
@@ -53,8 +57,17 @@ public class ExamActivity extends AppCompatActivity implements ExamItem.PassData
         Intent intent=this.getIntent();
         this.examId=intent.getLongExtra("exam_id",0);
         this.testDur=intent.getIntExtra("duration",20000)*1000;
+        this.type=intent.getIntExtra("test_type",1);
         this.minute=(TextView) findViewById(R.id.minutes);
         this.second=(TextView) findViewById(R.id.seconds);
+        this.btnsubmit=(Button) findViewById(R.id.submit_button);
+        this.btnsubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               submitResult();
+               showAlertDialog();
+            }
+        });
         init(examId);
     }
     public void init(long examid){
@@ -75,7 +88,7 @@ public class ExamActivity extends AppCompatActivity implements ExamItem.PassData
                         Gson gson = new Gson();
                         questions=gson.fromJson(response,ListQuestion.class);
                         //show view
-                        ItemAdapter mPagerAdap=new ItemAdapter(getSupportFragmentManager(),questions);
+                        ItemAdapter mPagerAdap=new ItemAdapter(getSupportFragmentManager(),questions,type);
                         for(int i=0;i<questions.getQuestions().size();i++){
                             AnswerResult asre=new AnswerResult(questions.getQuestions().get(i).getId(),false);
                             arrAnsRes.add(asre);
@@ -110,61 +123,7 @@ public class ExamActivity extends AppCompatActivity implements ExamItem.PassData
             public void onFinish() {
 
                 Toast.makeText(getApplicationContext(),"time is up",Toast.LENGTH_LONG).show();
-                SharedPreferences sharedPreferences = getSharedPreferences("group0201", MODE_PRIVATE);
-                String userJson = sharedPreferences.getString("user", null);
-                Gson gson = new Gson();
-                User obj = gson.fromJson(userJson, User.class);
-
-                long idUser=obj.getId();
-                int countCorr=0;
-                AnswerResult[] answerResults=new AnswerResult[20];
-                for(int i=0;i<arrAnsRes.size();i++){
-                    AnswerResult ansr=new AnswerResult(arrAnsRes.get(i).getQuestionId(),arrAnsRes.get(i).isRight());
-                    answerResults[i]=ansr;
-                    if(arrAnsRes.get(i).isRight()==true){
-                        countCorr++;
-                    }
-                }
-                correctMes=countCorr;
-                userResult=new UserResult(idUser,examId,(testDur-(int)duration)/1000+1,countCorr,answerResults);
-
-                String body=gson.toJson(userResult);
-                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                String url = getString(R.string.baseUrl) + "api/Exam/SaveResult";
-                // Request a string response from the provided URL.
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Toast.makeText(getApplicationContext(),"Result uploaded!",Toast.LENGTH_LONG).show();
-
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        NetworkResponse networkResponse = error.networkResponse;
-                        if (networkResponse != null && networkResponse.statusCode == 500) {
-                            Toast.makeText(getApplicationContext(), new String(networkResponse.data), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }) {
-                    @Override
-                    public String getBodyContentType() {
-                        return "application/json; charset=utf-8";
-                    }
-
-                    @Override
-                    public byte[] getBody() throws AuthFailureError {
-                        try {
-                            return body == null ? null : body.getBytes("utf-8");
-                        } catch (UnsupportedEncodingException uee) {
-                            VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", body, "utf-8");
-                            return null;
-                        }
-                    }
-                };
-                // Add the request to the RequestQueue.
-                queue.add(stringRequest);
+                submitResult();
                 showAlertDialog();
             }
         }.start();
@@ -186,6 +145,38 @@ public class ExamActivity extends AppCompatActivity implements ExamItem.PassData
 
     @Override
     public void onBackPressed() {
+        submitResult();
+        new AlertDialog.Builder(this)
+                .setTitle("Kết quả:")
+                .setMessage("Đúng "+this.correctMes+"/20 trong "+((testDur-(int)duration)/1000)+" giây")
+                .setPositiveButton("Thoát", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .show();
+    }
+
+    public void showAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Kết quả:");
+        builder.setMessage("Đúng "+correctMes+"/20 trong "+((testDur-(int)duration)/1000)+" giây");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Thoát", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent=new Intent(ExamActivity.this,ExamListActivity.class);
+                startActivity(intent);
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    public void submitResult(){
         SharedPreferences sharedPreferences = getSharedPreferences("group0201", MODE_PRIVATE);
         String userJson = sharedPreferences.getString("user", null);
         Gson gson = new Gson();
@@ -241,34 +232,6 @@ public class ExamActivity extends AppCompatActivity implements ExamItem.PassData
         };
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
-        new AlertDialog.Builder(this)
-                .setTitle("Kết quả:")
-                .setMessage("Đúng "+this.correctMes+"/20 trong "+((testDur-(int)duration)/1000)+" giây")
-                .setPositiveButton("Thoát", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-
-                })
-                .show();
-    }
-
-    public void showAlertDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Kết quả:");
-        builder.setMessage("Đúng "+correctMes+"/20 trong "+((testDur-(int)duration)/1000)+" giây");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Thoát", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent=new Intent(ExamActivity.this,ExamListActivity.class);
-                startActivity(intent);
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
     }
 
 }

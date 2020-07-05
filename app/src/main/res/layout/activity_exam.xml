@@ -53,6 +53,14 @@
                 android:text="00"
                 android:textAlignment="center"
                 android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/submit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nộp Bài"
+                android:textSize="10sp" />
         </LinearLayout>
 
         <androidx.viewpager.widget.ViewPager
